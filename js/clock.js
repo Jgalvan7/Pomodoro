@@ -33,6 +33,10 @@ function setAlarm() {
 }
 setAlarm();
 
+function avaiableAlarm() {
+    
+}
+
 
 
 
