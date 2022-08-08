@@ -24,40 +24,57 @@ let clockDisplay = setInterval(() => {
 const AlarmContainer = document.createElement("div");
 AlarmContainer.id = "alarmContainer";
 ClockApp.append(AlarmContainer);
-AlarmContainer.addEventListener("click", (event) => {
-    if(event.target.id == "setAlarm") {
-        hourAlarm = event.target.value;
-        if(hourAlarm != "") {
-            avaiableAlarm();
-        }
-    }
-});
-
 
 function setAlarm() {
-    let alarmInput = document.createElement("input");
-    alarmInput.type = "time";
-    alarmInput.id = "setAlarm";
-    let btnActive = document.createElement("button");
-    btnActive.id = "btnActiveAlarm";
-    btnActive.textContent = "Activar";
-    let btnDisable = document.createElement("button");
-    btnDisable.id = "btnDisableAlarm";
-    btnDisable.textContent = "Desactivar";
-    let btnReset = document.createElement("button");
-    btnReset.id = "btnResetAlarm";
-    btnReset.textContent = "Resetear";
-    btnReset.onclick = () => {
+    const AlarmInput = document.createElement("input");
+    AlarmInput.type = "time";
+    AlarmInput.id = "setAlarm";
+    const BtnActive = document.createElement("button");
+    BtnActive.id = "btnActiveAlarm";
+    BtnActive.textContent = "Activar";
+    BtnActive.onclick = () => {
+        avaiableAlarm();
+    }
+    const BtnDisable = document.createElement("button");
+    BtnDisable.id = "btnDisableAlarm";
+    BtnDisable.textContent = "Desactivar";
+    BtnDisable.disabled = true;
+    BtnDisable.onclick = () => {
+        disableAlarm();
+    }
+    const BtnReset = document.createElement("button");
+    BtnReset.id = "btnResetAlarm";
+    BtnReset.textContent = "Resetear";
+    BtnReset.onclick = () => {
         resetAlarm();
-    };
-    AlarmContainer.append(alarmInput,btnActive,btnDisable,btnReset);
+    }
+    AlarmContainer.append(AlarmInput,BtnActive,BtnDisable,BtnReset);
 }
 setAlarm();
 const AlarmActive = document.querySelector("#setAlarm");
+const AviableBtn = document.querySelector("#btnActiveAlarm");
+const DisableBtn = document.querySelector("#btnDisableAlarm");
+let checkHourAlarm;
 function avaiableAlarm() {
-    console.log("Alarma Activa");
+    if(AlarmActive.value != "") {
+        AviableBtn.disabled = true;
+        DisableBtn.disabled = false;
+        let alarm = AlarmActive.value.split(":");
+        checkHourAlarm = setInterval(() => {
+            let hourCLock = new Date();
+            if(alarm[0] == hourCLock.getHours() && alarm[1] == hourCLock.getMinutes()) {
+                clearInterval(checkHourAlarm);
+                console.log("Alarma");
+            }
+        },10);
+    } else {
+        console.log("No hay hora establecida");
+    }
 }
 function disableAlarm() {
+    AviableBtn.disabled = false;
+    DisableBtn.disabled = true;
+    clearInterval(checkHourAlarm);
 }
 function resetAlarm() {
     AlarmActive.value = "";
