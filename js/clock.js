@@ -63,7 +63,7 @@ function avaiableAlarm() {
         checkHourAlarm = setInterval(() => {
             let hourCLock = new Date();
             if(alarm[0] == hourCLock.getHours() && alarm[1] == hourCLock.getMinutes()) {
-                clearInterval(checkHourAlarm);
+                disableAlarm();
                 console.log("Alarma");
             }
         },10);
@@ -78,6 +78,7 @@ function disableAlarm() {
 }
 function resetAlarm() {
     AlarmActive.value = "";
+    disableAlarm();
 }
 
 
