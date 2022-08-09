@@ -57,13 +57,6 @@ function setAlarm() {
         BtnFiveMin.disabled = true;
         fiveMinMore();
     }
-    /* const alarmSound = document.createElement("audio");
-    alarmSound.id = "audioAlarm";
-    alarmSound.className = "hidden";
-    const sourceSound = document.createElement("source");
-    sourceSound.type = "audio/mp3";
-    sourceSound.src = "../assets/sounds/alarm_mix.mp3";
-    alarmSound.append(sourceSound); */
     AlarmContainer.append(AlarmInput,BtnActive,BtnDisable,BtnReset,BtnFiveMin);
 }
 setAlarm();
@@ -73,7 +66,6 @@ const AviableBtn = document.querySelector("#btnActiveAlarm");
 const DisableBtn = document.querySelector("#btnDisableAlarm");
 const BtnFiveMinMore = document.querySelector("#fiveMin");
 const ActiveSound = new Audio("../assets/sounds/alarm_mix.mp3");
-//const alarmSound = new Audio("../assets/sounds/alarm_mix.mp3");
 let checkHourAlarm;
 
 function avaiableAlarm() {
