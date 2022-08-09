@@ -29,6 +29,7 @@ function setAlarm() {
     const AlarmInput = document.createElement("input");
     AlarmInput.type = "time";
     AlarmInput.id = "setAlarm";
+    AlarmInput.disabled = false;
     const BtnActive = document.createElement("button");
     BtnActive.id = "btnActiveAlarm";
     BtnActive.textContent = "Activar";
@@ -48,14 +49,27 @@ function setAlarm() {
     BtnReset.onclick = () => {
         resetAlarm();
     }
-    AlarmContainer.append(AlarmInput,BtnActive,BtnDisable,BtnReset);
+    const BtnFiveMin = document.createElement("button");
+    BtnFiveMin.id = "fiveMin";
+    BtnFiveMin.disabled = true;
+    BtnFiveMin.textContent = "5 minutos mas";
+    BtnFiveMin.onclick = () => {
+        BtnFiveMin.disabled = true;
+        fiveMinMore();
+    }
+    AlarmContainer.append(AlarmInput,BtnActive,BtnDisable,BtnReset,BtnFiveMin);
 }
 setAlarm();
+
 const AlarmActive = document.querySelector("#setAlarm");
 const AviableBtn = document.querySelector("#btnActiveAlarm");
 const DisableBtn = document.querySelector("#btnDisableAlarm");
+const BtnFiveMinMore = document.querySelector("#fiveMin");
 let checkHourAlarm;
+
 function avaiableAlarm() {
+    AlarmActive.disabled = true;
+    let seconds = 0;
     if(AlarmActive.value != "") {
         AviableBtn.disabled = true;
         DisableBtn.disabled = false;
@@ -63,22 +77,35 @@ function avaiableAlarm() {
         checkHourAlarm = setInterval(() => {
             let hourCLock = new Date();
             if(alarm[0] == hourCLock.getHours() && alarm[1] == hourCLock.getMinutes()) {
-                disableAlarm();
-                console.log("Alarma");
+                BtnFiveMinMore.disabled = false;
+                seconds++;
+                if(seconds >= 30){
+                    disableAlarm();
+                }
             }
-        },10);
+        },1000);
     } else {
         console.log("No hay hora establecida");
     }
 }
 function disableAlarm() {
+    AlarmActive.disabled = false;
     AviableBtn.disabled = false;
     DisableBtn.disabled = true;
+    BtnFiveMinMore.disabled = true;
     clearInterval(checkHourAlarm);
 }
 function resetAlarm() {
     AlarmActive.value = "";
     disableAlarm();
+}
+function fiveMinMore() {
+    let arrayAlarm = AlarmActive.value.split(":");
+    arrayAlarm[1] = formatValue(Number(arrayAlarm[1]) + 1);
+    let alarmFiveMore = arrayAlarm.toString();
+    AlarmActive.value = alarmFiveMore.replace(",",":");
+    disableAlarm();
+    avaiableAlarm();
 }
 
 
