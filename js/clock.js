@@ -57,7 +57,14 @@ function setAlarm() {
         BtnFiveMin.disabled = true;
         fiveMinMore();
     }
-    AlarmContainer.append(AlarmInput,BtnActive,BtnDisable,BtnReset,BtnFiveMin);
+    const alarmSound = document.createElement("audio");
+    alarmSound.id = "audioAlarm";
+    alarmSound.className = "hidden";
+    const sourceSound = document.createElement("source");
+    sourceSound.type = "audio/mp3";
+    sourceSound.src = "../assets/sounds/alarm_mix.mp3";
+    alarmSound.append(sourceSound);
+    AlarmContainer.append(AlarmInput,BtnActive,BtnDisable,BtnReset,BtnFiveMin,alarmSound);
 }
 setAlarm();
 
@@ -65,6 +72,7 @@ const AlarmActive = document.querySelector("#setAlarm");
 const AviableBtn = document.querySelector("#btnActiveAlarm");
 const DisableBtn = document.querySelector("#btnDisableAlarm");
 const BtnFiveMinMore = document.querySelector("#fiveMin");
+const activeSound = document.querySelector("#audioAlarm");
 let checkHourAlarm;
 
 function avaiableAlarm() {
@@ -77,6 +85,7 @@ function avaiableAlarm() {
         checkHourAlarm = setInterval(() => {
             let hourCLock = new Date();
             if(alarm[0] == hourCLock.getHours() && alarm[1] == hourCLock.getMinutes()) {
+                activeSound.play();
                 BtnFiveMinMore.disabled = false;
                 seconds++;
                 if(seconds >= 30){
@@ -86,6 +95,7 @@ function avaiableAlarm() {
         },1000);
     } else {
         console.log("No hay hora establecida");
+        //to do validation...
     }
 }
 function disableAlarm() {
@@ -93,6 +103,7 @@ function disableAlarm() {
     AviableBtn.disabled = false;
     DisableBtn.disabled = true;
     BtnFiveMinMore.disabled = true;
+    activeSound.stop();
     clearInterval(checkHourAlarm);
 }
 function resetAlarm() {
@@ -101,9 +112,10 @@ function resetAlarm() {
 }
 function fiveMinMore() {
     let arrayAlarm = AlarmActive.value.split(":");
-    arrayAlarm[1] = formatValue(Number(arrayAlarm[1]) + 1);
+    arrayAlarm[1] = formatValue(Number(arrayAlarm[1]) + 5);
     let alarmFiveMore = arrayAlarm.toString();
     AlarmActive.value = alarmFiveMore.replace(",",":");
+    
     disableAlarm();
     avaiableAlarm();
 }
