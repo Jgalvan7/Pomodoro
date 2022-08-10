@@ -456,3 +456,130 @@ output {
 }
 /* Media Queries Mixin
 **********************/
+h1 {
+  font-size: 30px;
+  font-size: 1.875rem;
+  line-height: 2.8125rem;
+  font-family: "Kanit", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+}
+
+h2 {
+  font-size: 25px;
+  font-size: 1.5625rem;
+  line-height: 2.34375rem;
+  font-family: "Kanit", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+}
+
+h3 {
+  font-size: 20px;
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+  font-family: "Kanit", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+}
+
+h4 {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-family: "Kanit", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: #ebebeb;
+  background-color: #004F4F;
+  background-image: url(../assets/images/bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.app_clock {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
+  -ms-grid-rows: 1fr 2fr 2fr;
+  grid-template-rows: 1fr 2fr 2fr;
+  -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  padding: 0 10px;
+}
+
+.app_clock > *:nth-child(1) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+}
+
+.app_clock > *:nth-child(2) {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+}
+
+.app_clock > *:nth-child(3) {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+}
+.app_clock--title {
+  font-size: 30px;
+  font-size: 1.875rem;
+  line-height: 2.8125rem;
+}
+.app_clock--display {
+  font-weight: bold;
+  font-size: 75px;
+  font-size: 4.6875rem;
+  line-height: 7.03125rem;
+}
+.app_clock--alarm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 300px;
+}
+.app_clock--alarm .setAlarm {
+  padding: 0 38px;
+  font-size: 30px;
+  font-size: 1.875rem;
+  line-height: 2.8125rem;
+}
+.app_clock--alarm .alarm_btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+}

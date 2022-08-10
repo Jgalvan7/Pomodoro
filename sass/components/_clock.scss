@@ -1,0 +1,32 @@
+.app_clock {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 2fr;
+    align-self: center;
+    justify-self: center;
+    padding: 0 10px;
+    &--title {
+        @include font-size(30px);
+    }
+    &--display {
+        font-weight: bold;
+        @include font-size(75px);
+    }
+    &--alarm {
+        display: flex;
+        width: 300px;
+        .setAlarm {
+            padding: 0 38px;
+            @include font-size(30px);
+        }
+        .alarm_btn {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            &--avaiable {}
+            &--disabled {}
+            &--reset {}
+            &--fiveMin {}
+        }
+    }
+}
