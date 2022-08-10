@@ -16,7 +16,7 @@ DisplaySeconds.textContent = formatValue(0);
 const point = ":";
 ContainerDisplayKhrono.append(DisplayHours,point,DisplayMinutes,point,DisplaySeconds);
 
-// Controles del Khrono
+// Controles del Khronometro
 const ContainerControlKhrono = document.createElement("div");
 ContainerControlKhrono.id = "controlkhronoDisplay";
 const BtnStart = document.createElement("button");
@@ -70,7 +70,6 @@ function startKhrono() {
 function stopKhrono() {
     BtnStart.disabled = false;
     BtnStop.disabled = true;
-    
     clearInterval(countKhronos);
 
 }
