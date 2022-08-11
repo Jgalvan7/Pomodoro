@@ -529,10 +529,7 @@ a:hover {
   grid-template-columns: 1fr;
   -ms-grid-rows: 1fr 2fr 2fr;
   grid-template-rows: 1fr 2fr 2fr;
-  -ms-grid-row-align: center;
-      align-self: center;
-  -ms-grid-column-align: center;
-      justify-self: center;
+  place-items: center;
   padding: 0 10px;
 }
 
