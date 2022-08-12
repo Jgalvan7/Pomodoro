@@ -58,6 +58,9 @@ $Fuente2: 'Kanit', sans-serif;
 }
 
 body {
+    display: grid;
+    grid-template-rows: 50px auto;
+    height: 100vh;
     margin: 0;
     color: $color-claro;
     background-color: $color-primario;

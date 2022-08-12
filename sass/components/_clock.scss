@@ -1,7 +1,7 @@
 .app_clock {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 2fr 2fr;
+    grid-template-rows: 50px auto 120px;
+    align-content: center;
     place-items: center;
     padding: 0 10px;
     &--title {
