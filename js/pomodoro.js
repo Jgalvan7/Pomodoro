@@ -64,17 +64,17 @@ BtnStart.onclick = () => {
 }
 const BtnStop = document.createElement("button");
 BtnStop.id = "btnStopKhrono";
-BtnStop.textContent = "Desactivar";
+BtnStop.textContent = "Reiniciar";
 BtnStop.disabled = true;
 BtnStop.onclick = () => {
-    stopKhrono();
+    stopTimer(countPomodoro);
 }
 const BtnReset = document.createElement("button");
 BtnReset.id = "btnResetKhrono";
 BtnReset.textContent = "Resetear";
-BtnReset.disabled = true
+BtnReset.disabled = false;
 BtnReset.onclick = () => {
-    resetKhrono();
+    resetPomodoro(countPomodoro);
 }
 PomodoroConfigContentBtn.append(BtnStart,BtnStop,BtnReset);
 
@@ -96,6 +96,9 @@ if(inputTimer) {
 
 function startTimer() {
     BtnStart.disabled = true;
+    BtnStop.disabled = false;
+    inputSession.disabled = true;
+    inputTimer.disabled = true;
     DisplayMinutes.textContent = formatValue(minutesValue);
     countPomodoro = setInterval(() => {
             if(secondsValue == 0){
@@ -105,6 +108,7 @@ function startTimer() {
                 } else {
                     stopTimer(countPomodoro);
                     pauseState();
+                    ActiveSound.play();
                     return;
                 }
                 secondsValue = 59;
@@ -113,11 +117,10 @@ function startTimer() {
                 secondsValue -= 1;
                 DisplaySeconds.textContent = formatValue(secondsValue);
             }
-    }, 10);
+    }, 100);
 }
 function pauseState() {
     inputSession.value -= 1;
-    ActiveSound.play();
     if(inputSession.value == etapas) {
         resetPomodoro(countPomodoro);
         return;
@@ -138,13 +141,17 @@ function stopTimer(countName) {
     ActiveSound.pause();
     ActiveSound.currentTime = 0;
     clearInterval(countName);
+    DisplaySeconds.textContent = "00";
+    DisplayMinutes.textContent = "00";
+    secondsValue = 0;
+    minutesValue = inputTimer.value;
+    BtnStart.disabled = false;
+    BtnStop.disabled = true;
+    inputSession.disabled = false;
+    inputTimer.disabled = false;
 }
 function resetPomodoro(countName) {
     stopTimer(countName);
-    DisplaySeconds.textContent = "00";
-    DisplayMinutes.textContent = "00";
     inputSession.value = "1";
     inputTimer.value = "5";
-    secondsValue = 0;
-    minutesValue = inputTimer.value;
 }
