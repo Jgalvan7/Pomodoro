@@ -85,7 +85,7 @@ AlarmContainer.append(AlarmInput,ControlContainer);
 ClockApp.append(AlarmContainer);
 
 // Sonido
-const ActiveSound = new Audio("../assets/sounds/alarm_mix.mp3");
+const ActiveSound = new Audio("../assets/sounds/pomodoro.mp3");
 let checkHourAlarm;
 
 // Interaciones de la alarma
@@ -118,6 +118,7 @@ function disableAlarm() {
     AlarmInput.disabled = false;
     BtnActive.disabled = false;
     BtnDisable.disabled = true;
+    BtnFiveMin.classList.add("hidden");
     BtnFiveMin.disabled = true;
     ActiveSound.pause();
     ActiveSound.currentTime = 0;

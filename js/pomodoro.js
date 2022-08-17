@@ -78,7 +78,7 @@ BtnReset.onclick = () => {
 }
 PomodoroConfigContentBtn.append(BtnStart,BtnStop,BtnReset);
 
-const ActiveSound = new Audio("../assets/sounds/alarm_mix.mp3");
+const ActiveSound = new Audio("../assets/sounds/pomodoro.mp3");
 let countPomodoro;
 let minutesValue = 0;
 let secondsValue = 0;
@@ -135,7 +135,6 @@ function pauseState() {
     }
 }
 function stopTimer(countName) {
-    btnStart ? btnStart.disabled = false : "";
     ActiveSound.pause();
     ActiveSound.currentTime = 0;
     clearInterval(countName);
