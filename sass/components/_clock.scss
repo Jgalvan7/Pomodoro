@@ -1,13 +1,15 @@
 .app_clock {
     display: grid;
     grid-template-rows: 50px auto 120px;
-    align-content: center;
     place-items: center;
-    padding: 0 10px;
+    place-self: center;
+    width: 300px;
+    height: 300px;
     &--title {
         @include font-size(30px);
     }
     &--display {
+        width: 300px;
         font-weight: bold;
         @include font-size(75px);
     }
