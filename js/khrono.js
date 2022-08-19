@@ -1,9 +1,17 @@
 const KhronoApp = document.querySelector(".app_khrono");
-const ContainerDisplayKhrono = document.createElement("div");
-ContainerDisplayKhrono.id = "khronoDisplay";
-KhronoApp.append(ContainerDisplayKhrono);
+const TitleSection = document.createElement("div");
+TitleSection.id = "titleContainer";
+TitleSection.className = "app_clock--title";
+const TitleSectionText = document.createElement("p");
+TitleSectionText.textContent = "Khrono";
+TitleSection.append(TitleSectionText);
+KhronoApp.append(TitleSection);
+
 
 // Display Khronos
+const ContainerDisplayKhrono = document.createElement("div");
+ContainerDisplayKhrono.id = "khronoDisplay";
+ContainerDisplayKhrono.className = "app_khrono--display";
 const DisplayHours = document.createElement("span");
 DisplayHours.id = "hours";
 DisplayHours.textContent = formatValue(0);
@@ -15,10 +23,12 @@ DisplaySeconds.id = "seconds";
 DisplaySeconds.textContent = formatValue(0);
 const point = ":";
 ContainerDisplayKhrono.append(DisplayHours,point,DisplayMinutes,point,DisplaySeconds);
+KhronoApp.append(ContainerDisplayKhrono);
 
 // Controles del Khronometro
 const ContainerControlKhrono = document.createElement("div");
-ContainerControlKhrono.id = "controlkhronoDisplay";
+ContainerControlKhrono.id = "khronoControls";
+ContainerControlKhrono.className = "app_khrono--controls";
 const BtnStart = document.createElement("button");
 BtnStart.id = "btnStartKhrono";
 BtnStart.textContent = "Activar";

@@ -1,0 +1,29 @@
+.app_khrono {
+    display: grid;
+    grid-template-rows: 50px auto 120px;
+    place-items: center;
+    place-self: center;
+    width: 300px;
+    height: 300px;
+    &--title {
+        @include font-size(30px);
+    }
+    &--display {
+        width: 300px;
+        font-weight: bold;
+        @include font-size(75px);
+    }
+    &--constrols {
+        display: flex;
+        width: 300px;
+        .setAlarm {
+            padding: 0 38px;
+            @include font-size(30px);
+        }
+        .alarm_btn {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+    }
+}
