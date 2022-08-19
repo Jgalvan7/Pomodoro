@@ -509,14 +509,28 @@ body {
   height: 100vh;
   margin: 0;
   color: #ebebeb;
-  background-color: #004F4F;
-  background-image: url(../assets/images/bg.png);
+  background-color: #00B285;
+  background: -webkit-gradient(linear, left top, right bottom, from(#001D6E), to(#00B285));
+  background: linear-gradient(to bottom right, #001D6E, #00B285);
+  /* background-image: url(../assets/images/bg.png);
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   font-family: "Mulish", sans-serif;
   font-size: 16px;
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+main {
+  height: 100%;
+  overflow-y: scroll;
+}
+main::-webkit-scrollbar {
+  width: 6px;
+}
+main::-webkit-scrollbar-thumb {
+  background-color: rgba(240, 240, 240, 0.2);
+  border-radius: 20px;
 }
 
 a:hover {
@@ -598,7 +612,7 @@ a:hover {
   }
   .miniHeroCover__contenido {
     position: absolute;
-    background-color: rgba(0, 79, 79, 0.4);
+    background-color: rgba(0, 178, 133, 0.4);
   }
   .miniHeroCover__contenido h1, .miniHeroCover__contenido h2, .miniHeroCover__contenido h3, .miniHeroCover__contenido h4, .miniHeroCover__contenido p {
     text-shadow: 2px 3px 5px #000;
@@ -650,7 +664,7 @@ a:hover {
     width: 30%;
     padding: 15px;
     border-radius: 5px;
-    background: linear-gradient(35deg, rgba(0, 178, 133, 0.9) 0%, rgba(0, 79, 79, 0.9) 80%);
+    background: linear-gradient(35deg, rgba(0, 29, 110, 0.9) 0%, rgba(0, 178, 133, 0.9) 80%);
     -webkit-box-shadow: 0px 20px 33px 0px rgba(0, 0, 0, 0.9);
             box-shadow: 0px 20px 33px 0px rgba(0, 0, 0, 0.9);
   }

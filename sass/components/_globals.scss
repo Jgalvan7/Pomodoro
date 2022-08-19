@@ -1,6 +1,6 @@
 // Variables
-$color-primario: #004F4F;
-$color-secundario: #00B285;
+$color-primario: #00B285;
+$color-secundario: #001D6E;
 $color-claro: #ebebeb;
 $color-oscuro: #000000;
 $Fuente1: 'Mulish', sans-serif;
@@ -64,11 +64,24 @@ body {
     margin: 0;
     color: $color-claro;
     background-color: $color-primario;
-    background-image: url(../assets/images/bg.png);
+    background: linear-gradient(to bottom right, $color-secundario, $color-primario);
+    /* background-image: url(../assets/images/bg.png);
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
     @include titulos($Fuente1);
     @include font-size(16px);
+}
+main {
+    height: 100%;
+    //padding-bottom: 100px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(240,240,240,0.2);
+        border-radius: 20px;
+    }
 }
 
 a:hover {
