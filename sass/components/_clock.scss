@@ -16,9 +16,17 @@
     &--alarm {
         display: flex;
         width: 300px;
+        border-radius: 10px;
+        overflow: hidden;
         .setAlarm {
             padding: 0 38px;
+            border: none;
+            color: $color-claro;
+            background-color: rgba($color: $color-claro, $alpha: 0.4);
             @include font-size(30px);
+            &::-webkit-calendar-picker-indicator {
+                filter:invert(90%);
+            }
         }
         .alarm_btn {
             display: flex;

@@ -1,20 +1,27 @@
 const PomodoroApp = document.querySelector(".app_pomodoro");
-const DisplayContent = document.createElement("div");
-DisplayContent.id = "displayContent";
-DisplayContent.className = "displayPomodoro";
-PomodoroApp.append(DisplayContent);
 
+
+// Title de la sección
+const TitleSection = document.createElement("div");
+TitleSection.id = "titleContainer";
+TitleSection.className = "app_clock--title";
+const TitleSectionText = document.createElement("p");
+TitleSectionText.textContent = "Pomodoro";
+TitleSection.append(TitleSectionText);
+PomodoroApp.append(TitleSection);
+
+
+// Contenedores
 const PomodoroTimer = document.createElement("div");
 PomodoroTimer.id = "pomodoroTimer";
-PomodoroTimer.className = "displayPomodoro--timer";
+PomodoroTimer.className = "app_pomodoro--display";
 const PomodoroConfig = document.createElement("div");
 PomodoroConfig.id = "pomodoroConfig";
-PomodoroConfig.className = "displayPomodoro--config";
-DisplayContent.append(PomodoroTimer,PomodoroConfig);
+PomodoroConfig.className = "app_pomodoro--constrols";
+PomodoroApp.append(PomodoroTimer,PomodoroConfig);
 
-/* const DisplayHours = document.createElement("span");
-DisplayHours.id = "hours";
-DisplayHours.textContent = formatValue(0); */
+
+// Display
 const DisplayMinutes = document.createElement("span");
 DisplayMinutes.id = "minutes";
 DisplayMinutes.textContent = formatValue(0);
@@ -22,39 +29,72 @@ const DisplaySeconds = document.createElement("span");
 DisplaySeconds.id = "seconds";
 DisplaySeconds.textContent = formatValue(0);
 const point = ":";
-PomodoroTimer.append(/* DisplayHours,point, */DisplayMinutes,point,DisplaySeconds);
+PomodoroTimer.append(DisplayMinutes,point,DisplaySeconds);
 
+
+// Controles
 const PomodoroConfigContentInput = document.createElement("div");
 PomodoroConfigContentInput.id = "ConfigInputContainer";
-PomodoroConfigContentInput.className = "pomodoroConfig--input";
+PomodoroConfigContentInput.className = "pomodoroConfigValue";
 const PomodoroConfigContentBtn = document.createElement("div");
 PomodoroConfigContentBtn.id = "ConfigBtnContainer";
-PomodoroConfigContentBtn.className = "pomodoroConfig--btn";
+PomodoroConfigContentBtn.className = "pomodoroConfigBtn";
 PomodoroConfig.append(PomodoroConfigContentInput,PomodoroConfigContentBtn);
 
-const spanSession = document.createElement("span");
-spanSession.className = "spanSession";
+
+// Inputs
+const spanSession = document.createElement("div");
+spanSession.className = "containerControl";
 const textSession = document.createElement("p");
 textSession.textContent = "Session: ";
-const inputSession = document.createElement("input");
-inputSession.type = "number";
-inputSession.id = "amountSession";
-inputSession.value = "1";
-inputSession.min = "1";
-const spanTimer = document.createElement("span");
-spanTimer.className = "spanSession";
+const containerSession = document.createElement("div");
+containerSession.className = "containerSession";
+const LessSession= document.createElement("button");
+LessSession.id = "amountSession";
+LessSession.textContent = "-";
+LessSession.disabled = true;
+LessSession.onclick = () => {
+    fewerSession();
+}
+let sessionValue = document.createElement("span");
+sessionValue.id = "amountSession";
+sessionValue.textContent = "1";
+const PlusSession = document.createElement("button");
+PlusSession.id = "amountSession";
+PlusSession.textContent = "+";
+PlusSession.onclick = () => {
+    moreSession();
+}
+containerSession.append(LessSession,sessionValue,PlusSession);
+const spanTimer = document.createElement("div");
+spanTimer.className = "containerControl";
 const textTimer = document.createElement("p");
 textTimer.textContent = "Tiempo: ";
-const inputTimer = document.createElement("input");
-inputTimer.type = "number";
-inputTimer.id = "amountTimer";
-inputTimer.value = "5";
-inputTimer.min = "5";
-inputTimer.step = "5";
-spanSession.append(textSession,inputSession);
-spanTimer.append(textTimer,inputTimer);
+const containerTimer = document.createElement("div");
+containerTimer.className = "containerSession";
+const LessTimer= document.createElement("button");
+LessTimer.id = "amountSession";
+LessTimer.textContent = "-";
+LessTimer.disabled = true;
+LessTimer.onclick = () => {
+    fewerTimer();
+}
+let timerValue = document.createElement("span");
+timerValue.id = "amountSession";
+timerValue.textContent = "5";
+const PlusTimer = document.createElement("button");
+PlusTimer.id = "amountSession";
+PlusTimer.textContent = "+";
+PlusTimer.onclick = () => {
+    moreTimer();
+}
+containerTimer.append(LessTimer,timerValue,PlusTimer);
+spanSession.append(textSession,containerSession);
+spanTimer.append(textTimer,containerTimer);
 PomodoroConfigContentInput.append(spanSession,spanTimer);
 
+
+// Botones
 const BtnStart = document.createElement("button");
 BtnStart.id = "btnStartKhrono";
 BtnStart.textContent = "Activar";
@@ -78,27 +118,49 @@ BtnReset.onclick = () => {
 }
 PomodoroConfigContentBtn.append(BtnStart,BtnStop,BtnReset);
 
+
+// Sonido y variables
 const ActiveSound = new Audio("../assets/sounds/pomodoro.mp3");
 let countPomodoro;
 let minutesValue = 0;
 let secondsValue = 0;
-let etapas = 0;
+let sessionEtapas = Number(sessionValue.textContent);
+let timerSession = Number(timerValue.textContent);
 
-if(inputTimer) {
-    minutesValue = inputTimer.value;
-    inputTimer.addEventListener("change",() =>{
-        if (inputTimer.value < 5){
-            inputTimer.value = 5;
-        }
-        minutesValue = inputTimer.value;
-    });
-};
 
+// Logica
+function moreSession() {
+    sessionValue.textContent = Number(sessionValue.textContent) + 1;
+    sessionEtapas = Number(sessionValue.textContent);
+    LessSession.disabled = false;
+}
+function fewerSession() {
+    sessionValue.textContent = Number(sessionValue.textContent) - 1;
+    sessionEtapas = Number(sessionValue.textContent);
+    if (sessionEtapas == 1) {
+        LessSession.disabled = true;
+    }
+}
+function moreTimer() {
+    timerValue.textContent = Number(timerValue.textContent) + 5;
+    timerSession = Number(timerValue.textContent);
+    LessTimer.disabled = false;
+}
+function fewerTimer() {
+    timerValue.textContent = Number(timerValue.textContent) - 5;
+    timerSession = Number(timerValue.textContent);
+    if (timerSession == 5) {
+        LessTimer.disabled = true;
+    }
+}
 function startTimer() {
     BtnStart.disabled = true;
     BtnStop.disabled = false;
-    inputSession.disabled = true;
-    inputTimer.disabled = true;
+    LessSession.disabled = true;
+    PlusSession.disabled = true;
+    LessTimer.disabled = true;
+    PlusTimer.disabled = true;
+    minutesValue = timerSession;
     DisplayMinutes.textContent = formatValue(minutesValue);
     countPomodoro = setInterval(() => {
             if(secondsValue == 0){

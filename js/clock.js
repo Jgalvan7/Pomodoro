@@ -1,8 +1,6 @@
 const ClockApp = document.querySelector(".app_clock");
 
 
-
-
 // Title de la sección
 const TitleSection = document.createElement("div");
 TitleSection.id = "titleContainer";
@@ -35,6 +33,7 @@ let clockDisplay = setInterval(() => {
     clockDisplaySeconds.textContent = formatValue(timeCount.getSeconds());
 }, 10);
 
+
 // Alarma
 const AlarmContainer = document.createElement("div");
 AlarmContainer.id = "alarmContainer";
@@ -44,6 +43,7 @@ AlarmInput.type = "time";
 AlarmInput.id = "setAlarm";
 AlarmInput.className = "setAlarm";
 AlarmInput.disabled = false;
+
 
 // Botones
 const ControlContainer = document.createElement("div");
@@ -88,7 +88,7 @@ ClockApp.append(AlarmContainer);
 const ActiveSound = new Audio("../assets/sounds/pomodoro.mp3");
 let checkHourAlarm;
 
-// Interaciones de la alarma
+// Logica
 function avaiableAlarm() {
     AlarmInput.disabled = true;
     let seconds = 0;

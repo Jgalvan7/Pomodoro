@@ -1,0 +1,68 @@
+.app_pomodoro {
+    display: grid;
+    grid-template-rows: 50px auto;
+    place-items: center;
+    place-self: center;
+    width: 300px;
+    height: 300px;
+    &--title {
+        @include font-size(30px);
+    }
+    &--display {
+        width: 300px;
+        font-weight: bold;
+        @include font-size(75px);
+    }
+    &--constrols {
+        display: grid;
+        grid-template-rows: 1fr auto;
+        gap: 5px;
+        width: 300px;
+        .pomodoroConfigValue {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 5px;
+            width: 100%;
+        }
+        .pomodoroConfigBtn {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            button {
+                width: 100%;
+            }
+        }
+    }
+}
+.containerControl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgba($color: $color-claro, $alpha: 0.4);
+    p {
+        margin: 0;
+    }
+    .containerSession {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        font-weight: 700;
+        @include font-size(20px);
+        button {
+            border: none;
+            color: $color-claro;
+            @include font-size(24px);
+            font-weight: bolder;
+            background: none;
+            &:disabled {
+                color: rgba($color: $color-claro, $alpha: 0.4);
+            }
+        }
+    }
+}

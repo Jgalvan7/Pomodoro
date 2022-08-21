@@ -701,12 +701,21 @@ a:hover {
   display: -ms-flexbox;
   display: flex;
   width: 300px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .app_clock--alarm .setAlarm {
   padding: 0 38px;
+  border: none;
+  color: #ebebeb;
+  background-color: rgba(235, 235, 235, 0.4);
   font-size: 30px;
   font-size: 1.875rem;
   line-height: 2.8125rem;
+}
+.app_clock--alarm .setAlarm::-webkit-calendar-picker-indicator {
+  -webkit-filter: invert(90%);
+          filter: invert(90%);
 }
 .app_clock--alarm .alarm_btn {
   display: -webkit-box;
@@ -764,4 +773,106 @@ a:hover {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 100%;
+}
+
+.app_pomodoro {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 50px auto;
+  grid-template-rows: 50px auto;
+  place-items: center;
+  -ms-grid-row-align: center;
+  -ms-grid-column-align: center;
+  place-self: center;
+  width: 300px;
+  height: 300px;
+}
+.app_pomodoro--title {
+  font-size: 30px;
+  font-size: 1.875rem;
+  line-height: 2.8125rem;
+}
+.app_pomodoro--display {
+  width: 300px;
+  font-weight: bold;
+  font-size: 75px;
+  font-size: 4.6875rem;
+  line-height: 7.03125rem;
+}
+.app_pomodoro--constrols {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 5px auto;
+  grid-template-rows: 1fr auto;
+  gap: 5px;
+  width: 300px;
+}
+.app_pomodoro--constrols .pomodoroConfigValue {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 5px 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 5px;
+  width: 100%;
+}
+.app_pomodoro--constrols .pomodoroConfigBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.app_pomodoro--constrols .pomodoroConfigBtn button {
+  width: 100%;
+}
+
+.containerControl {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgba(235, 235, 235, 0.4);
+}
+.containerControl p {
+  margin: 0;
+}
+.containerControl .containerSession {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  font-weight: 700;
+  font-size: 20px;
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+}
+.containerControl .containerSession button {
+  border: none;
+  color: #ebebeb;
+  font-size: 24px;
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+  font-weight: bolder;
+  background: none;
+}
+.containerControl .containerSession button:disabled {
+  color: rgba(235, 235, 235, 0.4);
 }
