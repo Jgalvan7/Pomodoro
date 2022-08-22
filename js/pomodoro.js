@@ -164,23 +164,23 @@ function startTimer() {
     minutesValue = timerSession;
     DisplayMinutes.textContent = formatValue(minutesValue);
     countPomodoro = setInterval(() => {
-            if(secondsValue == 0){
-                if(minutesValue != 0){
-                    minutesValue -= 1;
-                    DisplayMinutes.textContent = formatValue(minutesValue);
-                } else {
-                    stopTimer(countPomodoro);
-                    pauseState();
-                    ActiveSound.play();
-                    return;
-                }
-                secondsValue = 59;
-                DisplaySeconds.textContent = formatValue(secondsValue);
+        if(secondsValue == 0){
+            if(minutesValue != 0){
+                minutesValue -= 1;
+                DisplayMinutes.textContent = formatValue(minutesValue);
             } else {
-                secondsValue -= 1;
-                DisplaySeconds.textContent = formatValue(secondsValue);
+                stopTimer(countPomodoro);
+                pauseState();
+                //ActiveSound.play();
+                return;
             }
-    }, 100);
+            secondsValue = 59;
+            DisplaySeconds.textContent = formatValue(secondsValue);
+        } else {
+            secondsValue -= 1;
+            DisplaySeconds.textContent = formatValue(secondsValue);
+        }
+    }, 10);
 }
 function pauseState() {
     sessionValue.textContent -= 1;
@@ -189,16 +189,13 @@ function pauseState() {
         resetPomodoro(countPomodoro);
         return;
     } else {
-        let delay;
+        let timeBreak;
         if(timerSession <= 30){
-            delay = 1000*30;
+            timeBreak = 1;
         } else {
-            delay = 1000*600;
+            timeBreak = 10;
         };
-        const pause = setTimeout(() => {
-            minutesValue = timerSession;
-            startTimer();
-        }, delay);
+        modalTimer(timeBreak);
     }
 }
 function stopTimer(countName) {
@@ -211,13 +208,54 @@ function stopTimer(countName) {
     minutesValue = timerSession;
     BtnStart.disabled = false;
     BtnStop.disabled = true;
-    LessSession.disabled = false;
+    LessSession.disabled = true;
     PlusSession.disabled = false;
-    LessTimer.disabled = false;
+    LessTimer.disabled = true;
     PlusTimer.disabled = false;
 }
 function resetPomodoro(countName) {
     stopTimer(countName);
     sessionValue.textContent = "1";
     timerValue.textContent = "5";
+}
+function modalTimer(timeBreak) {
+    const ContainerMain = document.querySelector("main");
+    const modal = document.createElement("div");
+    modal.id = "modalPausa";
+    modal.className = "modalPausa";
+    ContainerMain.append(modal);
+
+    const TitlePause = document.createElement("h3");
+    TitlePause.className = "modalPausa--title";
+    TitlePause.textContent = "Tiempo de descanso";
+
+    const DisplayPause = document.createElement("div");
+    DisplayPause.id = "displayPause";
+    const MinutesPause = document.createElement("span");
+    MinutesPause.id = "minutesPause";
+    MinutesPause.textContent = formatValue(0);
+    const SecondsPause = document.createElement("span");
+    SecondsPause.id = "secondsPause";
+    SecondsPause.textContent = formatValue(0);
+    DisplayPause.append(MinutesPause,point,SecondsPause);
+    modal.append(TitlePause,DisplayPause);
+
+    minutesValue = timeBreak;
+    const pauseTime = setInterval(() => {
+        if(secondsValue == 0){
+            if(minutesValue != 0){
+                minutesValue -= 1;
+                MinutesPause.textContent = formatValue(minutesValue);
+            } else {
+                stopTimer(pauseTime);
+                modal.remove(modal);
+                startTimer();
+            }
+            secondsValue = 59;
+            SecondsPause.textContent = formatValue(secondsValue);
+        } else {
+            secondsValue -= 1;
+            SecondsPause.textContent = formatValue(secondsValue);
+        }
+    },1000);
 }
