@@ -42,7 +42,7 @@ PomodoroConfigContentBtn.className = "pomodoroConfigBtn";
 PomodoroConfig.append(PomodoroConfigContentInput,PomodoroConfigContentBtn);
 
 
-// Inputs
+// Configuración de la sessión
 const spanSession = document.createElement("div");
 spanSession.className = "containerControl";
 const textSession = document.createElement("p");
@@ -94,7 +94,7 @@ spanTimer.append(textTimer,containerTimer);
 PomodoroConfigContentInput.append(spanSession,spanTimer);
 
 
-// Botones
+// Botones de control
 const BtnStart = document.createElement("button");
 BtnStart.id = "btnStartKhrono";
 BtnStart.textContent = "Activar";
@@ -126,9 +126,10 @@ let minutesValue = 0;
 let secondsValue = 0;
 let sessionEtapas = Number(sessionValue.textContent);
 let timerSession = Number(timerValue.textContent);
+const etapas = 0;
 
 
-// Logica
+// Lógica y programación
 function moreSession() {
     sessionValue.textContent = Number(sessionValue.textContent) + 1;
     sessionEtapas = Number(sessionValue.textContent);
@@ -182,19 +183,20 @@ function startTimer() {
     }, 100);
 }
 function pauseState() {
-    inputSession.value -= 1;
-    if(inputSession.value == etapas) {
+    sessionValue.textContent -= 1;
+    sessionEtapas = sessionValue.textContent;
+    if(sessionEtapas == etapas) {
         resetPomodoro(countPomodoro);
         return;
     } else {
         let delay;
-        if(inputTimer.value <= 30){
-            delay = 1000*300;
+        if(timerSession <= 30){
+            delay = 1000*30;
         } else {
             delay = 1000*600;
         };
         const pause = setTimeout(() => {
-            minutesValue = inputTimer.value;
+            minutesValue = timerSession;
             startTimer();
         }, delay);
     }
@@ -206,14 +208,16 @@ function stopTimer(countName) {
     DisplaySeconds.textContent = "00";
     DisplayMinutes.textContent = "00";
     secondsValue = 0;
-    minutesValue = inputTimer.value;
+    minutesValue = timerSession;
     BtnStart.disabled = false;
     BtnStop.disabled = true;
-    inputSession.disabled = false;
-    inputTimer.disabled = false;
+    LessSession.disabled = false;
+    PlusSession.disabled = false;
+    LessTimer.disabled = false;
+    PlusTimer.disabled = false;
 }
 function resetPomodoro(countName) {
     stopTimer(countName);
-    inputSession.value = "1";
-    inputTimer.value = "5";
+    sessionValue.textContent = "1";
+    timerValue.textContent = "5";
 }
