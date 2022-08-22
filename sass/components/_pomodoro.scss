@@ -9,6 +9,8 @@
         @include font-size(30px);
     }
     &--display {
+        display: flex;
+        justify-content: center;
         width: 300px;
         font-weight: bold;
         @include font-size(75px);

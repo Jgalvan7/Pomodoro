@@ -1,6 +1,6 @@
 .app_khrono {
     display: grid;
-    grid-template-rows: 50px auto 120px;
+    grid-template-rows: 50px 120px 30px;
     place-items: center;
     place-self: center;
     width: 300px;
@@ -13,16 +13,14 @@
         font-weight: bold;
         @include font-size(75px);
     }
-    &--constrols {
+    &--controls {
         display: flex;
+        justify-content: space-between;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
         width: 300px;
-        .setAlarm {
-            padding: 0 38px;
-            @include font-size(30px);
-        }
-        .alarm_btn {
-            display: flex;
-            flex-direction: column;
+        button {
             width: 100%;
         }
     }

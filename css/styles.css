@@ -731,8 +731,8 @@ a:hover {
 .app_khrono {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 50px auto 120px;
-  grid-template-rows: 50px auto 120px;
+  -ms-grid-rows: 50px 120px 30px;
+  grid-template-rows: 50px 120px 30px;
   place-items: center;
   -ms-grid-row-align: center;
   -ms-grid-column-align: center;
@@ -752,26 +752,19 @@ a:hover {
   font-size: 4.6875rem;
   line-height: 7.03125rem;
 }
-.app_khrono--constrols {
+.app_khrono--controls {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
   width: 300px;
 }
-.app_khrono--constrols .setAlarm {
-  padding: 0 38px;
-  font-size: 30px;
-  font-size: 1.875rem;
-  line-height: 2.8125rem;
-}
-.app_khrono--constrols .alarm_btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+.app_khrono--controls button {
   width: 100%;
 }
 
@@ -793,6 +786,12 @@ a:hover {
   line-height: 2.8125rem;
 }
 .app_pomodoro--display {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 300px;
   font-weight: bold;
   font-size: 75px;
