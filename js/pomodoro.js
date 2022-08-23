@@ -180,7 +180,7 @@ function startTimer() {
             secondsValue -= 1;
             DisplaySeconds.textContent = formatValue(secondsValue);
         }
-    }, 10);
+    }, 1000);
 }
 function pauseState() {
     sessionValue.textContent -= 1;
@@ -191,7 +191,7 @@ function pauseState() {
     } else {
         let timeBreak;
         if(timerSession <= 30){
-            timeBreak = 1;
+            timeBreak = 5;
         } else {
             timeBreak = 10;
         };
