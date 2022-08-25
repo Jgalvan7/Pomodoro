@@ -543,6 +543,34 @@ a:hover {
   display: none;
 }
 
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.menu__nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 250px;
+  height: 50px;
+}
+.menu__nav img {
+  height: 35px;
+  margin-left: 10px;
+  -webkit-filter: invert(95%);
+          filter: invert(95%);
+}
+
 .miniHeroCover {
   width: 100%;
 }
@@ -893,8 +921,8 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 600px;
-  height: 400px;
+  /* width: 600px;
+  height: 400px; */
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.8);
 }
