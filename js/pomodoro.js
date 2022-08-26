@@ -258,6 +258,7 @@ function modalTimer(timeBreak) {
                 stopTimer(pauseTime);
                 modal.remove(modal);
                 startTimer();
+                return;
             }
             secondsValue = 59;
             SecondsPause.textContent = formatValue(secondsValue);
