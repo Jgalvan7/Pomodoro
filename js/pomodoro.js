@@ -113,7 +113,7 @@ const BtnReset = document.createElement("button");
 BtnReset.id = "btnResetKhrono";
 BtnReset.textContent = "Resetear";
 BtnReset.disabled = false;
-BtnReset.onclick = () => {
+BtnReset.onclick = () => {;
     resetPomodoro(countPomodoro);
 }
 PomodoroConfigContentBtn.append(BtnStart,BtnStop,BtnReset);
@@ -171,7 +171,7 @@ function startTimer() {
             } else {
                 stopTimer(countPomodoro);
                 pauseState();
-                //ActiveSound.play();
+                ActiveSound.play();
                 return;
             }
             secondsValue = 59;
@@ -208,9 +208,17 @@ function stopTimer(countName) {
     minutesValue = timerSession;
     BtnStart.disabled = false;
     BtnStop.disabled = true;
-    LessSession.disabled = true;
+    if(sessionEtapas > 1) {
+        LessSession.disabled = false;
+    } else {
+        LessSession.disabled = true;
+    }
     PlusSession.disabled = false;
-    LessTimer.disabled = true;
+    if(timerSession > 5) {
+        LessTimer.disabled = false;
+    } else {
+        LessTimer.disabled = true;
+    }
     PlusTimer.disabled = false;
 }
 function resetPomodoro(countName) {
